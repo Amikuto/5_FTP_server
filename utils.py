@@ -2,6 +2,8 @@ import os
 import pickle
 import shutil
 import logging
+import json
+
 # from settings import PATH
 
 # PATH = os.path.join(os.getcwd(), 'docs')
@@ -10,12 +12,37 @@ logging.basicConfig(filename="ftp-server.log", level=logging.INFO)
 PATH = os.getcwd()
 
 
+def get_curr_path(username):
+    with open("users.json", "r") as f:
+        temp = json.load(f)
+        return temp["users"][username]["path"]
+
+
+def set_curr_path(username, path):
+    with open("users.json", "r") as f:
+        js_file = json.load(f)
+
+    target = js_file["users"][username]
+    target["path"] = username + "/" + path
+
+    with open("users.json", "w") as file:
+        json.dump(js_file, file, indent=4)
+
+
 def copy_file(name):
     return pickle.dumps(name)
 
 
-def files_in_curr_directory():
-    file_list = '; '.join(os.listdir())
+# def files_in_curr_directory():
+#     file_list = '; '.join(os.listdir())
+#     if file_list == "":
+#         return "Папка пуста"
+#     else:
+#         return file_list
+
+
+def files_in_curr_directory(username):
+    file_list = '; '.join(os.listdir("docs/" + get_curr_path(username)))
     if file_list == "":
         return "Папка пуста"
     else:
@@ -26,21 +53,21 @@ def current_dir():
     return os.getcwd().replace("D:\Programming\Python\\5_FTP_server\docs", "/")
 
 
-def create_folder(name):
+def create_folder(username, name):
     """
     1 задание - создает папку в текущей директории
     :param name:
     :return:
     """
     try:
-        os.mkdir(name)
+        os.mkdir("docs/" + get_curr_path(username) + "/" + name)
         return f"Папка {name} создана!"
     except OSError:
         logging.warning("Ошибка в создании папки!")
         return "Папку создать не удалось!"
 
 
-def delete_folder(name):
+def delete_folder(username, name):
     """
     2 задание - удаляет папку в текущей директории
     :param name:
@@ -48,7 +75,7 @@ def delete_folder(name):
     """
     print(name)
     try:
-        os.rmdir(name)
+        os.rmdir("docs/" + get_curr_path(username) + "/" + name)
         return f"Папка {name} удалена!"
     except OSError:
         logging.warning("Ошибка в удалении папки!")
@@ -83,15 +110,16 @@ def change_dir(path):
             return "Ошибка! Либо папка указана неверно, либо такой папки не существует"
 
 
-def create_file(name):
+def create_file(username, file_name):
     """
     4 задание - создает новый файл
-    :param name:
+    :param username:
+    :param file_name:
     :return:
     """
     try:
-        open(name, "w", encoding="UTF-8").close()
-        return f"Файл {name} создан!"
+        open("docs/" + username + "/" + file_name, "w", encoding="UTF-8").close()
+        return f"Файл {file_name} создан!"
     except Exception:
         logging.warning("Ошибка в создании нового файла!")
     # my_file.close()
@@ -113,14 +141,15 @@ def add_text_to_file(file_name, text):
         return "Возникла ошибка IOError!"
 
 
-def show_text(file_name):
+def show_text(username, file_name):
     """
     6 задание - показывает содержимое файла
+    :param username:
     :param file_name:
     :return:
     """
     try:
-        with open(f"{PATH}\{file_name}", "r") as f:
+        with open("docs/" + username + "/" + file_name, "r") as f:
             text = f.read()
             return text
     except IOError:
@@ -128,15 +157,16 @@ def show_text(file_name):
         return "Возникла ошибка IOError!"
 
 
-def remove_file(file_name):
+def remove_file(username, file_name):
     """
     7 задание - удаляет файл в текущей директории
+    :param username:
     :param file_name:
     :return:
     """
     try:
-        os.remove(file_name)
-        return f"Папка {file_name} удалена!"
+        os.remove("docs/" + get_curr_path(username) + "/" + file_name)
+        return f"Файл {file_name} удалена!"
     except OSError:
         logging.warning(f"Ошибка в удалении файла {file_name}!")
         return f"Удалить папку с названием {file_name} не удалось!"
@@ -166,15 +196,16 @@ def move_file(file_name, path):
     logging.warning("Файл перемещен!")
 
 
-def rename_file(file_name, new_file_name):
+def rename_file(username, file_name, new_file_name):
     """
     10 задание - Изменяет название файла
+    :param username:
     :param file_name:
     :param new_file_name:
     :return:
     """
     try:
-        os.rename(file_name, new_file_name)
+        os.rename("docs/" + get_curr_path(username) + "/" + file_name, new_file_name)
         return f"Файл {file_name} изменен на {new_file_name}"
     except Exception:
         return f"Удалить файл не удалось!"

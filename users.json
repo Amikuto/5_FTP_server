@@ -1,0 +1,39 @@
+{
+    "users": {
+        "test1": {
+            "password": "3d309097bbbe6478f483bc80943a1141b2a6eb22c1767bdeb7e33e405bb7c744eb4b221176a3b72a9786b53e4c9cb69dcef32f5ab46f0a71e1a80612f004d9478231dfcf1a33ef44b8e86259cc4b610a2b636e9ac48bb9a0a7dfb80d9f276b68",
+            "address": "127.0.0.1"
+        },
+        "test2": {
+            "password": "513a1fefb9475043ad4ed73ebc9f124d5efc25c96b03dffbc838d045471671e2996865187d4017f3570c3063294557f3fa50f20a2d032112d6423654edb0d5b88d933f4c35fed2adbdd3b7318f8854957101074ab3c1f5bf607a2f064b5fdc63",
+            "address": "192.161.0.19"
+        },
+        "test": {
+            "password": "a504e424d79962b032ff6f6cef0c8107a02bff8b3748d9578a662ba8a4be324d590fb1057f2956bbb83a28c500b58dd74258fd04a05a55e55b6021da137e17d2989a1b1fd97fcbd1608c7547c1fb175d3ce39d8f48ac874cdab390eeb464d133",
+            "address": "127.0.0.1"
+        },
+        "test3": {
+            "password": "c931033403dd820cdc2422ca6e5589e75559b9e8f3deb996acbc557662eef448c33db46b5a52aeb18931d81a5f1d68b6d1ddf2d9904ef42fbb0590d9136d701839c5d8212a766c89fc612ba43e4b52e4933ffbedb9cc5f46442523c1d1fe9cb6",
+            "address": "127.0.0.1"
+        },
+        "pwd": {
+            "password": "ba6f30d7053ba0305f1446f7d337ef5a402464b0f1cad0cdb682ba488ae82909512108c45171af08cdf352545471fc7790590bfc17940fbd2215e802690de9d80d2df512f8ddcf0e064947c0f8a48bcaec3b2a57b39e830b1cbf833960722984",
+            "address": "127.0.0.1"
+        },
+        "old": {
+            "password": "f6baff67cb81532c830535c8c140cbe758646d3c63d1bcb229a1baa7f2e6519b43743f619d804bdee0701b1906377bfbcb94702325c5ee62c89cc14e43c1257a0ddf9c4eb3c40c1d4a9711ec13af2bb8e569a075d0cf7620826363c05e57543a",
+            "address": "127.0.0.1",
+            "path": "old"
+        },
+        "murchakalo": {
+            "password": "0274ac1ba1879c15fd36745de0ef8ec9ab66b85bfe71162542e07ebe69e0501e2a84289a3c78b6f0c1c525df8ff98ef4b3344316f6907ddfda08130532cb757c0c370ae06a69fbe76130d0651f905f8cfd4073e2bd0ac695d9ea71a33fdaf97d",
+            "address": "127.0.0.1",
+            "path": "murchakalo/123"
+        },
+        "qwe": {
+            "password": "cf184fc5084594d97a4d88c8aa1734fb5925ca3d0d9962172b655b102cef9d1e7a6deaa2c4f62b4b2cc9c43e59d73a1d58928c62be70451b4e1b69960c18143c14e5af14902318d80101d9e341ac3c7e65e708c3308967b52015fdded84b126e",
+            "address": "127.0.0.1",
+            "path": "qwe/testfolder"
+        }
+    }
+}
