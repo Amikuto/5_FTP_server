@@ -8,7 +8,8 @@ import json
 
 # PATH = os.path.join(os.getcwd(), 'docs')
 # os.chdir("/docs")
-logging.basicConfig(filename="ftp-server.log", level=logging.INFO)
+logging.basicConfig(format='%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', filename="logs/ftp-server.log", level=logging.DEBUG)
+log = logging.getLogger("Ami SERVER")
 PATH = os.getcwd()
 
 
@@ -60,7 +61,9 @@ def create_folder(username, name):
     :return:
     """
     try:
-        os.mkdir("docs/" + get_curr_path(username) + "/" + name)
+        path = "docs/" + get_curr_path(username) + "/"
+        os.mkdir(path + name)
+        log.info(f"Пользователь {username} создал папку {name} в директории: {path}")
         return f"Папка {name} создана!"
     except OSError:
         logging.warning("Ошибка в создании папки!")
@@ -193,7 +196,7 @@ def move_file(file_name, path):
     new_dir = os.path.join(curr_path, path)
     check_path(new_dir)
     shutil.move(file_name, path)
-    logging.warning("Файл перемещен!")
+    logging.info("Файл перемещен!")
 
 
 def rename_file(username, file_name, new_file_name):
