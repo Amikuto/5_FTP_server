@@ -11,6 +11,7 @@ import json
 logging.basicConfig(format='%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', filename="logs/ftp-server.log", level=logging.DEBUG)
 log = logging.getLogger("Ami SERVER")
 PATH = os.getcwd()
+print(PATH)
 
 
 def get_curr_path(username):
@@ -24,6 +25,8 @@ def set_curr_path(username, path):
         js_file = json.load(f)
 
     target = js_file["users"][username]
+    # if path == "..":
+    #
     target["path"] = username + "/" + path
 
     with open("users.json", "w") as file:
@@ -51,7 +54,11 @@ def files_in_curr_directory(username):
 
 
 def current_dir():
-    return os.getcwd().replace("D:\Programming\Python\\5_FTP_server\docs", "/")
+    return os.getcwd().replace("D:\Programming\Python\pi195-workshoppython-Amikuto\\7-Task", "/")
+
+
+def create_new_user_folder(username):
+    os.mkdir("D:\Programming\Python\pi195-workshoppython-Amikuto\\7-Task\docs\\" + username)
 
 
 def create_folder(username, name):

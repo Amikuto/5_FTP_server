@@ -33,7 +33,12 @@
         "qwe": {
             "password": "cf184fc5084594d97a4d88c8aa1734fb5925ca3d0d9962172b655b102cef9d1e7a6deaa2c4f62b4b2cc9c43e59d73a1d58928c62be70451b4e1b69960c18143c14e5af14902318d80101d9e341ac3c7e65e708c3308967b52015fdded84b126e",
             "address": "127.0.0.1",
-            "path": "qwe/testfolder"
+            "path": "qwe"
+        },
+        "lmn": {
+            "password": "63075603a9567979df2c3038650ba75a5652a893051a57ac0fa4b3ad094730ab2e49064d0a7f27888d0db215e68825db67d721ff1c283b8ed9b5a47e0ab15f5c4060c6b55305ef291796ce93fcf0499a94b31f01ccb4a5c49d26701dceb70e4b",
+            "address": "127.0.0.1",
+            "path": "lmn"
         }
     }
 }

@@ -2,5 +2,5 @@ ERROR:root:РћС€РёР±РєР° РІ РёР·РјРµРЅРµРЅРёРё С‚РµРєСѓС‰РµР№ РґРёСЂРµРєС‚РѕСЂРёР
 WARNING:root:РћС€РёР±РєР° РІ РёР·РјРµРЅРµРЅРёРё С‚РµРєСѓС‰РµР№ РґРёСЂРµРєС‚РѕСЂРёРё!
 WARNING:root:РћС€РёР±РєР° РІ РёР·РјРµРЅРµРЅРёРё С‚РµРєСѓС‰РµР№ РґРёСЂРµРєС‚РѕСЂРёРё!
 WARNING:root:РћС€РёР±РєР° РІ РІС‹РІРѕРґРµ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ С„Р°Р№Р»Р° testFile!
-INFO:Ami SERVER:Пользователь qwe создал папку op в директории: docs/qwe/testfolder/
-INFO:Ami SERVER:b'\xd0\x9f\xd0\xbe\xd0\xbb\xd1\x8c\xd0\xb7\xd0\xbe\xd0\xb2\xd0\xb0\xd1\x82\xd0\xb5\xd0\xbb\xd1\x8c qwe \xd1\x81\xd0\xbe\xd0\xb7\xd0\xb4\xd0\xb0\xd0\xbb \xd0\xbf\xd0\xb0\xd0\xbf\xd0\xba\xd1\x83 oraora \xd0\xb2 \xd0\xb4\xd0\xb8\xd1\x80\xd0\xb5\xd0\xba\xd1\x82\xd0\xbe\xd1\x80\xd0\xb8\xd0\xb8: docs/qwe/testfolder/'
+utils.py[LINE:72]# WARNING  [2021-05-28 12:23:07,564]  Ошибка в создании папки!
+utils.py[LINE:73]# INFO     [2021-05-28 21:11:29,224]  Пользователь qwe создал папку test в директории: docs/qwe//

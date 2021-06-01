@@ -2,7 +2,6 @@ import errno
 import socket
 import os
 import threading
-
 import utils
 import logging
 import json
@@ -14,8 +13,6 @@ pwd - показывает название рабочей директории
 ls - показывает содержимое текущей директории
 cat <filename> - отправляет содержимое файла
 '''
-
-# os.chdir('docs')
 logging.basicConfig(filename="log.log", level=logging.INFO)
 log = logging.getLogger("Ami SERVER")
 
@@ -42,22 +39,21 @@ def verify_password(stored_password, provided_password):
 
 
 def add_new_user(address, passwd, name):
-    with open("../users.json", "r") as f:
+    with open("../7-Task/users.json", "r") as f:
         js_file = json.load(f)
 
     target = js_file["users"]
     user_info = {name: {'password': hash_password(passwd), 'address': address, 'path': name}}
     target.update(user_info)
 
-    with open("../users.json", "w") as file:
+    with open("../7-Task/users.json", "w") as file:
         json.dump(js_file, file, indent=4)
 
-    # utils.change_dir("docs/" + name)
-    utils.create_folder(name)
+    os.mkdir("../7-Task/docs/" + name)
 
 
 def check_if_exist(name):
-    with open("../users.json", "r") as f:
+    with open("../7-Task/users.json", "r") as f:
         temp = json.load(f)
         if temp["users"][name]:
             return True
@@ -66,7 +62,7 @@ def check_if_exist(name):
 
 
 def getpass(name):
-    with open("../users.json", "r") as f:
+    with open("../7-Task/users.json", "r") as f:
         temp = json.load(f)
         passwd = temp["users"][name]["password"]
     return passwd
@@ -120,7 +116,7 @@ def process(req, username):
     req_list = req.split(" ")
     req = req_list[0]
     if req == 'pwd':
-        return utils.current_dir()
+        return utils.get_curr_path(username)
     elif req == 'ls':
         return utils.files_in_curr_directory(username)
     elif req == 'cat':
@@ -135,8 +131,8 @@ def process(req, username):
         return utils.remove_file(username, req_list[-1])
     elif req == 'mv':
         return utils.rename_file(username, req_list[-2], req_list[-1])
-    elif req == 'copy':
-        pass
+    elif req == 'cd':
+        return utils.set_curr_path(username, req_list[-1])
     elif req == 'disconnect':
         pass
     return 'bad request'
@@ -165,46 +161,3 @@ if __name__ == "__main__":
 
     thread = threading.Thread(target=accept_client())
     thread.start()
-
-
-
-
-
-
-# while True:
-#     msg = ''
-#     conn, addr = sock.accept()
-#
-#     text = "Введите логин: "
-#     conn.send(text.encode())
-#     login = conn.recv(1024).decode()
-#     conn.send(f"Ваш логин {login}... Теперь введите пароль: ".encode())
-#     password = conn.recv(1024).decode()
-#
-#     flag = False
-#     try:
-#         if check_if_exist(login):
-#             while not flag:
-#                 if verify_password(getpass(login), password):
-#                     flag = True
-#                     conn.send("Вход успешно выполнен. Теперь сервер будет отвечать на ваши сообщения!".encode())
-#                     break
-#                 else:
-#                     conn.send("Пароль неверен, введите его заново: ".encode())
-#                     password = conn.recv(1024).decode()
-#     except KeyError:
-#         conn.send("Увы, такого пользователя нет в базе. Добавление по введенному логину и паролю...".encode())
-#         add_new_user(addr[0], password, login)
-#
-#     # while True:
-#         # logging.info("Начался прием данных от клиента!")
-#         # data = conn.recv(1024)
-#         # if data.decode() == "exit":
-#             # logging.info("Завершение соединения с клиентом!")
-#             # conn.close()
-#             # break
-#     # request = conn.recv(1024).decode()
-#     # response = process(request)
-#     # conn.send(response.encode())
-#
-# conn.close()
